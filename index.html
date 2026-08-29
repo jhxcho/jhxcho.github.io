@@ -1,221 +1,520 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jeonghwan Cho</title>
+  <meta name="description" content="Jeonghwan Cho's personal page">
   <meta name="author" content="Jeonghwan Cho">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="https://jonbarron.info/stylesheet.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
   <style>
-    body, td, th, tr, p, a {
-      font-family: 'Inter', 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 15px;
-      line-height: 1.75;
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #2c2c2c;
+      background: #fff;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
     }
 
-    strong {
-      font-family: 'Inter', 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 15px;
-    }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    h2 {
-      font-family: 'Inter', 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 18px;
+    /* ── Profile header ── */
+    .profile-header { margin-bottom: 2rem; }
+
+    .profile-header h1 {
+      margin: 0 0 0.2rem;
+      font-size: 1.9rem;
       font-weight: 600;
-      letter-spacing: -0.01em;
-      text-transform: none;
-      color: #222;
-      border-bottom: 1px solid #ececec;
-      padding-bottom: 6px;
-      margin-bottom: 4px;
+      line-height: 1.2;
+      text-align: center;
     }
 
-    .name {
-      font-family: 'Inter', 'Lato', Verdana, Helvetica, sans-serif;
+    .profile-subtitle {
+      color: #555;
+      margin: 0 0 1.5rem;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .profile-body {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .profile-left { flex-shrink: 0; }
+
+    /* The photo has a pure-white studio background, so without a frame its
+       top and sides dissolve into the page. */
+    .profile-photo img {
+      width: 200px;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid #e3e3e3;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.07);
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.1rem;
+      margin-top: 1rem;
+    }
+
+    .profile-links a {
+      color: #444;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .profile-links a:hover { color: #1a73e8; text-decoration: none; }
+
+    /* ── Section headings ── */
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      border-bottom: 2px solid #e8e8e8;
+      padding-bottom: 0.3rem;
+      margin-top: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Bio ── */
+    .bio { flex: 1; }
+    .bio p { margin: 0 0 0.5rem; }
+    .bio p:last-child { margin-bottom: 0; }
+
+    /* ── News ── */
+    .news-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .news-list li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+      font-size: 0.93rem;
+    }
+
+    .news-date {
+      flex: 0 0 5.5rem;
+      color: #888;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── CV sections (Education / Awards) ── */
+    ul.cv-list {
+      padding-left: 1.3rem;
+      margin: 0;
+    }
+
+    ul.cv-list > li { margin-bottom: 0.9rem; }
+
+    ul.cv-list > li > ul {
+      padding-left: 1.2rem;
+      margin-top: 0.2rem;
+    }
+
+    ul.cv-list > li > ul > li {
+      margin-bottom: 0.15rem;
+      color: #555;
+      font-size: 0.93rem;
+    }
+
+    /* Latin honors / distinction */
+    .honor {
+      font-style: italic;
+      color: #8a6420;
+    }
+
+    /* ── Experience items with logo ── */
+    ul.cv-list.exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    li.exp-item { list-style: none; }
+
+    .exp-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* Fixed-size logo box so all logos share the same visual footprint */
+    .exp-logo {
+      flex-shrink: 0;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .exp-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .exp-text { flex: 1; }
+
+    .exp-company {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .exp-role {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .exp-period {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 1px;
+    }
+
+    .exp-advisor {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* ── Publications ── */
+    .publications-list { margin-top: 0.5rem; }
+
+    .pub-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .pub-teaser {
+      flex: 0 0 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pub-teaser img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .pub-links {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Text labels rather than icons — an arXiv glyph reads to almost nobody */
+    .pub-links a {
+      display: inline-flex;
+      align-items: center;
+      color: #555;
+      font-size: 0.8rem;
+      letter-spacing: 0.01em;
+      border: 1px solid #dcdcdc;
+      border-radius: 999px;
+      padding: 1px 11px;
+      line-height: 1.7;
+    }
+
+    .pub-links a:hover {
+      color: #1a73e8;
+      border-color: #1a73e8;
+      text-decoration: none;
+    }
+
+    /* Stand-in tile for a paper that is not public yet */
+    .pub-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px dashed #d5d5d5;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b0b0b0;
+      font-size: 0.9rem;
+    }
+
+    .pub-meta { flex: 1; min-width: 0; }
+
+    .pub-meta h3.pub-tbd { color: #999; font-weight: 500; }
+
+    .pub-meta h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .pub-meta .author {
+      font-size: 0.88rem;
+      color: #444;
+      margin-bottom: 3px;
+    }
+
+    .pub-meta .venue {
+      font-size: 0.88rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: #bbb;
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      ul.cv-list.exp-grid { grid-template-columns: 1fr; }
+      .profile-body { flex-direction: column; }
+      .profile-left { width: 100%; }
+      .profile-photo img { width: 100%; height: auto; }
+      .news-list li { flex-direction: column; gap: 0; }
+      .news-date { flex: none; }
+      .pub-item { flex-direction: column; }
+      .pub-teaser { width: 100%; flex: none; }
+      .pub-teaser img { width: 100%; height: auto; }
     }
   </style>
 </head>
-
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
 
-          <!-- ═══ PROFILE ═══ -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr style="padding:0px">
-                <td style="padding:2.5%;width:63%;vertical-align:middle">
-                  <p class="name" style="text-align:center;">Jeonghwan Cho</p>
-                  <p>
-                    I am a Integrated M.S./Ph.D. Program student in Artificial Intelligence at
-                    <a href="https://www.yonsei.ac.kr" target="_blank">Yonsei University</a>,
-                    advised by <a href="https://www.ciplab.kr/home" target="_blank">Prof. Seon Joo Kim</a>.
-                    I received my Bachelor's degree in Applied Artificial Intelligence from
-                    Sungkyunkwan University in February 2026.
-                  </p>
-                  <p>
-                    My research interests lie in <strong>3D Understanding</strong>,
-                    including 3D Gaussian Splatting, Neural Radiance Fields,
-                    and 3D scene representation for real-world perception.
-                  </p>
-                  <p style="text-align:center">
-                    <a href="mailto:jhcho@yonsei.ac.kr">Email</a> &nbsp;/&nbsp;
-                    <a href="assets/CV_20250901.pdf" target="_blank">CV</a> &nbsp;/&nbsp;
-                    <a href="https://github.com/jhxcho" target="_blank">GitHub</a>
-                  </p>
-                </td>
-                <td style="padding:2.5%;width:37%;max-width:37%">
-                  <a href="assets/profile.png">
-                    <img style="width:100%;max-width:100%;object-fit:cover;border-radius:50%;"
-                         alt="profile photo" src="assets/profile.png">
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  <!-- ══════════════ PROFILE ══════════════ -->
+  <div class="profile-header">
+    <h1>Jeonghwan Cho</h1>
+    <p class="profile-subtitle">Integrated M.S./Ph.D. Student · CIPLAB, Yonsei University</p>
+    <div class="profile-body">
+      <div class="profile-left">
+        <div class="profile-photo">
+          <img src="assets/profile.png" alt="Jeonghwan Cho" />
+        </div>
+      </div>
+      <div class="bio">
+        <p>
+          I am an Integrated M.S./Ph.D. student in Artificial Intelligence at
+          <a href="https://www.yonsei.ac.kr" target="_blank" rel="noopener">Yonsei University</a>,
+          advised by <a href="https://www.ciplab.kr/home" target="_blank" rel="noopener">Prof. Seon Joo Kim</a>.
+          I received my Bachelor's degree in Applied Artificial Intelligence from
+          Sungkyunkwan University in February 2026.
+        </p>
+        <p>
+          My research interests lie in <strong>3D Understanding</strong>, including
+          3D Gaussian Splatting, Neural Radiance Fields, and 3D scene representation
+          for real-world perception.
+        </p>
+        <p>
+          If you have any questions or suggestions, please feel free to contact me via
+          email (<a href="mailto:jhcho@yonsei.ac.kr">jhcho@yonsei.ac.kr</a>) or
+          <a href="https://www.linkedin.com/in/jeonghwan-cho-76779b288/" target="_blank" rel="noopener">LinkedIn</a>!
+        </p>
+        <div class="profile-links">
+          <a href="mailto:jhcho@yonsei.ac.kr"><i class="fas fa-envelope"></i> jhcho@yonsei.ac.kr</a>
+          <a href="assets/CV_20250901.pdf" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i> CV</a>
+          <a href="https://github.com/jhxcho" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://www.linkedin.com/in/jeonghwan-cho-76779b288/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <!--
+            To add more links, copy one line above and change the icon + URL.
+            Google Scholar : <i class="ai ai-google-scholar"></i>
+            X / Twitter    : <i class="fab fa-x-twitter"></i>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <!-- ═══ NEWS ═══ -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px 20px 20px;">
-                  <h2>News</h2>
-                  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-top:12px;">
-                    <tbody>
-                      <tr>
-                        <td style="padding:2px 16px 2px 0px;color:#888;font-size:13px;white-space:nowrap;vertical-align:top;">2026.02.25</td>
-                        <td style="padding:2px 0px;font-size:13px;white-space:nowrap;">I received my Bachelor's degree in Applied Artificial Intelligence from Sungkyunkwan University.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  <!-- ══════════════ NEWS ══════════════ -->
+  <h2 id="news">News</h2>
 
-          <!-- ═══ EDUCATION ═══ -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px 20px 20px;">
-                  <h2>Education</h2>
-                  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-top:12px;">
-                    <tbody>
+  <!--
+    Add newest items at the top.
+    <li><span class="news-date">2026.03.02</span><span>Your news text here.</span></li>
+  -->
+  <ul class="news-list">
+    <li>
+      <span class="news-date">2026.02.25</span>
+      <span>I received my Bachelor's degree in Applied Artificial Intelligence from Sungkyunkwan University.</span>
+    </li>
+  </ul>
 
-                      <tr>
-                        <td style="padding:6px 0px 10px;vertical-align:top;width:70%">
-                          <strong>Yonsei University</strong><br>
-                          Integrated M.S./Ph.D. in Artificial Intelligence<br>
-                          <span style="color:#666;font-size:13.5px">Advisor: Prof. Seon Joo Kim</span>
-                        </td>
-                        <td style="padding:6px 0px 10px;vertical-align:top;text-align:right;color:#666;font-size:13.5px;white-space:nowrap;">
-                          Mar. 2026 –<br>Seoul, Korea
-                        </td>
-                      </tr>
+  <!-- ══════════════ PUBLICATIONS ══════════════ -->
+  <h2 id="publications">Publications</h2>
 
-                      <tr>
-                        <td style="padding:10px 0px 6px;vertical-align:top;width:70%">
-                          <strong>Sungkyunkwan University</strong><br>
-                          B.S. in Applied Artificial Intelligence<br>
-                          <span style="color:#666;font-size:13.5px">CGPA: 4.29 / 4.50 &nbsp;·&nbsp; <em style="color:#a07830;">Magna Cum Laude</em></span>
-                        </td>
-                        <td style="padding:10px 0px 6px;vertical-align:top;text-align:right;color:#666;font-size:13.5px;white-space:nowrap;">
-                          Mar. 2022 – Feb. 2026<br>Seoul, Korea
-                        </td>
-                      </tr>
+  <!--
+    ┌─ HOW TO ADD A PUBLICATION ────────────────────────────────────────────┐
+    │ Copy the block below into .publications-list, newest first.           │
+    │ Put the teaser image in assets/ (e.g. assets/papers/myproject.png).   │
+    │ Delete any <a> link you don't have (project page / code / arXiv).     │
+    │ Wrap your own name in <strong> so it stands out in the author list.   │
+    └───────────────────────────────────────────────────────────────────────┘
 
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="pub-item">
+      <div class="pub-teaser">
+        <img src="assets/papers/PAPER_TEASER.png" alt="teaser for PAPER TITLE" />
+        <div class="pub-links">
+          <a href="PROJECT_PAGE_URL" target="_blank" rel="noopener">Project</a>
+          <a href="ARXIV_URL" target="_blank" rel="noopener">arXiv</a>
+          <a href="GITHUB_URL" target="_blank" rel="noopener">Code</a>
+          <a href="PDF_URL" target="_blank" rel="noopener">PDF</a>
+        </div>
+      </div>
+      <div class="pub-meta">
+        <h3>Paper Title Goes Here</h3>
+        <div class="author">First Author, <strong>Jeonghwan Cho</strong>, Seon Joo Kim</div>
+        <div class="venue">In Proceedings of CVPR, 2026</div>
+      </div>
+    </div>
+  -->
 
-          <!-- ═══ EXPERIENCE ═══ -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px 20px 20px;">
-                  <h2>Experience</h2>
-                  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-top:12px;">
-                    <tbody>
+  <div class="publications-list">
 
-                      <tr>
-                        <td style="padding:6px 0px 10px;vertical-align:top;width:70%">
-                          <strong>Computational Intelligence &amp; Photography Lab</strong><br>
-                          Research Intern &nbsp;·&nbsp; 3D Vision Team<br>
-                          <span style="color:#666;font-size:13.5px">Advisor: Prof. Seon Joo Kim</span>
-                        </td>
-                        <td style="padding:6px 0px 10px;vertical-align:top;text-align:right;color:#666;font-size:13.5px;white-space:nowrap;">
-                          Jan. 2025 – Feb. 2026<br>Seoul, Korea
-                        </td>
-                      </tr>
+    <div class="pub-item">
+      <div class="pub-teaser">
+        <div class="pub-placeholder">Coming Soon</div>
+      </div>
+      <div class="pub-meta">
+        <h3 class="pub-tbd">Coming Soon</h3>
+      </div>
+    </div>
 
-                      <tr>
-                        <td style="padding:10px 0px 6px;vertical-align:top;width:70%">
-                          <strong>Multimodal AI Lab</strong><br>
-                          Research Intern &nbsp;·&nbsp; 3D Vision Team<br>
-                          <span style="color:#666;font-size:13.5px">Advisor: Prof. Youngjae Yu</span>
-                        </td>
-                        <td style="padding:10px 0px 6px;vertical-align:top;text-align:right;color:#666;font-size:13.5px;white-space:nowrap;">
-                          Jun. 2024 – Aug. 2024<br>Seoul, Korea
-                        </td>
-                      </tr>
+    <div class="pub-item">
+      <div class="pub-teaser">
+        <img src="assets/papers/atsplat.webp" alt="ATSplat teaser" />
+        <div class="pub-links">
+          <a href="https://join16.github.io/page-atsplat/" target="_blank" rel="noopener">Project</a>
+          <a href="https://arxiv.org/abs/2607.20417" target="_blank" rel="noopener">arXiv</a>
+          <!-- Code is not released yet — add when it is:
+          <a href="GITHUB_URL" target="_blank" rel="noopener">Code</a>
+          -->
+        </div>
+      </div>
+      <div class="pub-meta">
+        <h3>ATSplat: Compact Feed-forward 3D Gaussian Splatting with Adaptive Token Expansion</h3>
+        <div class="author">In Cho, <strong>Jeonghwan Cho</strong>, Mijin Yoo, Gim Hee Lee, Seon Joo Kim</div>
+        <div class="venue">arXiv preprint, 2026</div>
+      </div>
+    </div>
 
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  </div>
 
-          <!-- ═══ AWARDS ═══ -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px 20px 20px;">
-                  <h2>Awards</h2>
-                  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-top:12px;">
-                    <tbody>
-                      <tr>
-                        <td style="padding:4px 16px 4px 0px;color:#888;font-size:13.5px;white-space:nowrap;vertical-align:top;width:40px;">2026</td>
-                        <td style="padding:4px 0px;"><strong>Silver Prize</strong>, IPIU 2026, Jeju, Korea</td>
-                      </tr>
-                      <tr>
-                        <td style="padding:4px 16px 4px 0px;color:#888;font-size:13.5px;white-space:nowrap;vertical-align:top;width:40px;">2025</td>
-                        <td style="padding:4px 0px;"><strong>3rd Place &amp; Best Outside Submission</strong>, WACV Workshop ULTRRA Challenge, Nashville, USA</td>
-                      </tr>
-                      <tr>
-                        <td style="padding:4px 16px 4px 0px;color:#888;font-size:13.5px;white-space:nowrap;vertical-align:top;width:40px;">2022</td>
-                        <td style="padding:4px 0px;"><strong>Scholarship</strong> for Academic Excellence, Suwon, Korea</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  <!-- ══════════════ EDUCATION ══════════════ -->
+  <h2 id="education">Education</h2>
 
-          <!-- ═══ FOOTER ═══ -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:0px 0px 20px;">
-                  <p style="text-align:center;font-size:small;color:#bbb;">
-                    Design and source code from
-                    <a href="https://jonbarron.info" target="_blank" style="color:#bbb;">Jon Barron's website</a>.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  <ul class="cv-list">
+    <li>
+      Integrated M.S./Ph.D. Student @ Yonsei University
+      <ul>
+        <li>Artificial Intelligence, CIPLAB (PI: Prof. Seon Joo Kim)</li>
+        <li>2026.03 – Present · Seoul, Korea</li>
+      </ul>
+    </li>
+    <li>
+      B.S. at Sungkyunkwan University
+      <ul>
+        <li>Applied Artificial Intelligence</li>
+        <li>2022.03 – 2026.02 · Seoul, Korea</li>
+        <li>CGPA 4.29 / 4.50 · <span class="honor">Magna Cum Laude</span></li>
+      </ul>
+    </li>
+  </ul>
 
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- ══════════════ EXPERIENCE ══════════════ -->
+  <h2 id="experience">Experience</h2>
+
+  <!--
+    Logo files go in assets/logos/ (recommended width ~120px, height auto).
+    If you don't have a logo yet, delete the whole <div class="exp-logo">…</div>
+    block for that entry and the text will simply shift left.
+  -->
+
+  <ul class="cv-list exp-grid">
+    <li class="exp-item">
+      <div class="exp-content">
+        <div class="exp-text">
+          <div class="exp-company">Computational Intelligence &amp; Photography Lab</div>
+          <div class="exp-role">Research Intern · 3D Vision Team</div>
+          <div class="exp-period">2025.01 – 2026.02</div>
+          <div class="exp-advisor">Advisor: Prof. Seon Joo Kim</div>
+        </div>
+      </div>
+    </li>
+    <li class="exp-item">
+      <div class="exp-content">
+        <div class="exp-text">
+          <div class="exp-company">Multimodal AI Lab</div>
+          <div class="exp-role">Research Intern · 3D Vision Team</div>
+          <div class="exp-period">2024.06 – 2024.08</div>
+          <div class="exp-advisor">Advisor: Prof. Youngjae Yu</div>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ══════════════ AWARDS ══════════════ -->
+  <h2 id="awards">Awards</h2>
+
+  <!--
+    Each entry keeps the same two-line shape:
+      line 1 — Award name, Venue/Issuer + Year
+      line 2 — Full name of the venue/challenge · Location
+  -->
+
+  <ul class="cv-list">
+    <li>
+      Best Paper Award (Silver Prize), IPIU 2026
+      <ul><li>Workshop on Image Processing and Image Understanding · Jeju, Korea</li></ul>
+    </li>
+    <li>
+      3rd Place, WACV 2025 Workshop Challenge
+      <ul><li>ULTRRA: Unconstrained Large-scale Three-dimensional Reconstruction and Rendering across Altitudes · Nashville, USA</li></ul>
+    </li>
+    <li>
+      Scholarship for Academic Excellence, Sungkyunkwan University 2022
+      <ul><li>Suwon, Korea</li></ul>
+    </li>
+  </ul>
+
+  <footer>
+    Last updated: August 2026
+  </footer>
+
 </body>
 </html>
