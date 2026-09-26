@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -20,7 +20,7 @@
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
-      font-family: "Raleway", system-ui, sans-serif;
+      font-family: "Lato", system-ui, sans-serif;
       font-size: 16px;
       line-height: 1.65;
       color: #2c2c2c;
@@ -39,7 +39,7 @@
     .profile-header h1 {
       margin: 0 0 0.2rem;
       font-size: 1.9rem;
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.2;
       text-align: center;
     }
@@ -90,11 +90,18 @@
     /* ── Section headings ── */
     h2 {
       font-size: 1.25rem;
-      font-weight: 600;
+      font-weight: 700;
       border-bottom: 2px solid #e8e8e8;
       padding-bottom: 0.3rem;
       margin-top: 2.4rem;
       margin-bottom: 1rem;
+      /* Breathing room when an in-page link jumps to a section */
+      scroll-margin-top: 1.5rem;
+    }
+
+    /* Ease in-page jumps, but not for readers who asked for less motion */
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
     }
 
     /* ── Bio ── */
@@ -109,17 +116,29 @@
       list-style: none;
     }
 
+    /* baseline lines the pill up with the first line of text, whether or not it wraps */
     .news-list li {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 0.35rem;
+      align-items: baseline;
+      gap: 0.9rem;
+      margin-bottom: 0.5rem;
       font-size: 0.93rem;
     }
 
+    /* Outlined pill, matching the publication link badges further down. Every
+       date is year.month, so they all come out the same width without a fixed
+       column. */
     .news-date {
-      flex: 0 0 5.5rem;
-      color: #888;
+      flex: 0 0 auto;
+      color: #666;
+      font-size: 0.8rem;
+      letter-spacing: 0.01em;
       font-variant-numeric: tabular-nums;
+      border: 1px solid #dcdcdc;
+      border-radius: 999px;
+      padding: 1px 11px;
+      line-height: 1.7;
+      white-space: nowrap;
     }
 
     /* ── CV sections (Education / Awards) ── */
@@ -141,10 +160,9 @@
       font-size: 0.93rem;
     }
 
-    /* Latin honors / distinction */
+    /* Latin honors — italic only, no special color */
     .honor {
       font-style: italic;
-      color: #8a6420;
     }
 
     /* ── Experience items with logo ── */
@@ -183,9 +201,15 @@
     .exp-text { flex: 1; }
 
     .exp-company {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 1rem;
       line-height: 1.3;
+    }
+
+    /* The university rides along with the lab name, a step back from it */
+    .exp-org {
+      font-weight: 400;
+      color: #666;
     }
 
     .exp-role {
@@ -208,11 +232,22 @@
     /* ── Publications ── */
     .publications-list { margin-top: 0.5rem; }
 
+    /* Every entry carries the padding and a transparent accent border so that
+       tinted and untinted entries stay aligned with each other. */
     .pub-item {
       display: flex;
       gap: 20px;
       align-items: flex-start;
-      margin-bottom: 28px;
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border-left: 3px solid transparent;
+      border-radius: 8px;
+    }
+
+    /* First-author papers */
+    .pub-item.first-author {
+      background: #f5f8fd;
+      border-left-color: #b9cff0;
     }
 
     .pub-teaser {
@@ -273,12 +308,12 @@
 
     .pub-meta { flex: 1; min-width: 0; }
 
-    .pub-meta h3.pub-tbd { color: #999; font-weight: 500; }
+    .pub-meta h3.pub-tbd { color: #999; font-weight: 400; }
 
     .pub-meta h3 {
       margin: 0 0 5px;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.35;
     }
 
@@ -286,6 +321,12 @@
       font-size: 0.88rem;
       color: #444;
       margin-bottom: 3px;
+    }
+
+    /* Own name is wrapped in <strong>; underline it as CVs conventionally do */
+    .pub-meta .author strong {
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .pub-meta .venue {
@@ -308,8 +349,8 @@
       .profile-body { flex-direction: column; }
       .profile-left { width: 100%; }
       .profile-photo img { width: 100%; height: auto; }
-      .news-list li { flex-direction: column; gap: 0; }
-      .news-date { flex: none; }
+      /* Stack the pill above the text, keeping it at its own width */
+      .news-list li { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
       .pub-item { flex-direction: column; }
       .pub-teaser { width: 100%; flex: none; }
       .pub-teaser img { width: 100%; height: auto; }
@@ -348,7 +389,7 @@
         </p>
         <div class="profile-links">
           <a href="mailto:jhcho@yonsei.ac.kr"><i class="fas fa-envelope"></i> jhcho@yonsei.ac.kr</a>
-          <a href="assets/CV_20250901.pdf" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i> CV</a>
+          <a href="assets/CV_20260926.pdf" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i> CV</a>
           <a href="https://github.com/jhxcho" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
           <a href="https://www.linkedin.com/in/jeonghwan-cho-76779b288/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
           <!--
@@ -365,12 +406,16 @@
   <h2 id="news">News</h2>
 
   <!--
-    Add newest items at the top.
-    <li><span class="news-date">2026.03.02</span><span>Your news text here.</span></li>
+    Add newest items at the top. Dates are year.month.
+    <li><span class="news-date">2026.03</span><span>Your news text here.</span></li>
   -->
   <ul class="news-list">
     <li>
-      <span class="news-date">2026.02.25</span>
+      <span class="news-date">2026.09</span>
+      <span>Our paper <a href="#publications"><em>The Mask Is Not the Object</em></a> is accepted to <strong>NeurIPS 2026</strong>, Sydney, Australia! &#127462;&#127482;</span>
+    </li>
+    <li>
+      <span class="news-date">2026.02</span>
       <span>I received my Bachelor's degree in Applied Artificial Intelligence from Sungkyunkwan University.</span>
     </li>
   </ul>
@@ -384,9 +429,11 @@
     │ Put the teaser image in assets/ (e.g. assets/papers/myproject.png).   │
     │ Delete any <a> link you don't have (project page / code / arXiv).     │
     │ Wrap your own name in <strong> so it stands out in the author list.   │
+    │ Add class="first-author" to pub-item for a first-author paper, which  │
+    │ tints it; leave it off for co-authored ones.                          │
     └───────────────────────────────────────────────────────────────────────┘
 
-    <div class="pub-item">
+    <div class="pub-item first-author">
       <div class="pub-teaser">
         <img src="assets/papers/PAPER_TEASER.png" alt="teaser for PAPER TITLE" />
         <div class="pub-links">
@@ -399,19 +446,27 @@
       <div class="pub-meta">
         <h3>Paper Title Goes Here</h3>
         <div class="author">First Author, <strong>Jeonghwan Cho</strong>, Seon Joo Kim</div>
-        <div class="venue">In Proceedings of CVPR, 2026</div>
+        <div class="venue">In Proceedings of <strong>CVPR</strong>, 2026</div>
       </div>
     </div>
   -->
 
   <div class="publications-list">
 
-    <div class="pub-item">
+    <div class="pub-item first-author">
       <div class="pub-teaser">
         <div class="pub-placeholder">Coming Soon</div>
+        <!-- Teaser and links are not out yet — swap the placeholder for the image when they are:
+        <img src="assets/papers/PAPER_TEASER.png" alt="teaser for The Mask Is Not the Object" />
+        <div class="pub-links">
+          <a href="ARXIV_URL" target="_blank" rel="noopener">arXiv</a>
+        </div>
+        -->
       </div>
       <div class="pub-meta">
-        <h3 class="pub-tbd">Coming Soon</h3>
+        <h3>The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation</h3>
+        <div class="author"><strong>Jeonghwan Cho</strong>, Minsu Kim, Junyoung Hong, Seon Joo Kim</div>
+        <div class="venue">In Advances in Neural Information Processing Systems (<strong>NeurIPS</strong>), 2026</div>
       </div>
     </div>
 
@@ -442,7 +497,7 @@
     <li>
       Integrated M.S./Ph.D. Student @ Yonsei University
       <ul>
-        <li>Artificial Intelligence, CIPLAB (PI: Prof. Seon Joo Kim)</li>
+        <li>Artificial Intelligence, <a href="https://www.ciplab.kr/home" target="_blank" rel="noopener">CIPLAB</a> (Advisor: Prof. Seon Joo Kim)</li>
         <li>2026.03 – Present · Seoul, Korea</li>
       </ul>
     </li>
@@ -469,7 +524,7 @@
     <li class="exp-item">
       <div class="exp-content">
         <div class="exp-text">
-          <div class="exp-company">Computational Intelligence &amp; Photography Lab</div>
+          <div class="exp-company">CIPLAB <span class="exp-org">· Yonsei University</span></div>
           <div class="exp-role">Research Intern · 3D Vision Team</div>
           <div class="exp-period">2025.01 – 2026.02</div>
           <div class="exp-advisor">Advisor: Prof. Seon Joo Kim</div>
@@ -479,7 +534,7 @@
     <li class="exp-item">
       <div class="exp-content">
         <div class="exp-text">
-          <div class="exp-company">Multimodal AI Lab</div>
+          <div class="exp-company">MIRLAB <span class="exp-org">· Yonsei University</span></div>
           <div class="exp-role">Research Intern · 3D Vision Team</div>
           <div class="exp-period">2024.06 – 2024.08</div>
           <div class="exp-advisor">Advisor: Prof. Youngjae Yu</div>
@@ -513,7 +568,7 @@
   </ul>
 
   <footer>
-    Last updated: August 2026
+    Last updated: September 2026
   </footer>
 
 </body>
