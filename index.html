@@ -259,6 +259,11 @@
 
     .pub-teaser img {
       width: 100%;
+      /* one frame for every teaser, whatever each figure's own aspect is,
+         so the entries in the list line up */
+      aspect-ratio: 660 / 355;
+      object-fit: contain;
+      background: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
@@ -412,7 +417,7 @@
   <ul class="news-list">
     <li>
       <span class="news-date">2026.09</span>
-      <span>Our paper <a href="#publications"><em>The Mask Is Not the Object</em></a> is accepted to <strong>NeurIPS 2026</strong>, Sydney, Australia! &#127462;&#127482;</span>
+      <span>Our paper <a href="#publications"><em>VODA</em></a> is accepted to <strong>NeurIPS 2026</strong>, Sydney, Australia! &#127462;&#127482;</span>
     </li>
     <li>
       <span class="news-date">2026.02</span>
@@ -455,13 +460,12 @@
 
     <div class="pub-item first-author">
       <div class="pub-teaser">
-        <div class="pub-placeholder">Coming Soon</div>
-        <!-- Teaser and links are not out yet — swap the placeholder for the image when they are:
-        <img src="assets/papers/PAPER_TEASER.png" alt="teaser for The Mask Is Not the Object" />
+        <img src="assets/papers/voda.png" alt="VODA teaser" />
         <div class="pub-links">
-          <a href="ARXIV_URL" target="_blank" rel="noopener">arXiv</a>
+          <a href="https://jhxcho.github.io/voda/" target="_blank" rel="noopener">Project</a>
+          <a href="https://arxiv.org/abs/2611.21383" target="_blank" rel="noopener">arXiv</a>
+          <a href="https://github.com/jhxcho/voda" target="_blank" rel="noopener">Code</a>
         </div>
-        -->
       </div>
       <div class="pub-meta">
         <h3>The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation</h3>
